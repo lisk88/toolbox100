@@ -7,7 +7,7 @@
     <!-- SEO 优化 -->
     <title>AI 工具神兵谱 - toolbox100.com | 精选AI效率工具导航</title>
     <meta name="description" content="toolbox100.com 是一个精选AI工具导航站，收录了20+款强大的AI效率工具，涵盖AI写作、视频生成、图片编辑、PPT制作等领域，助您提升工作效率。">
-    <meta name="keywords" content="AI工具, 人工智能, 效率工具, 导航站, toolbox100, AI写作, AI视频, AI图片, AI PPT, Dream Machine, Runway, Jasper, Fotor, Gamma">
+    <meta name="keywords" content="AI工具, 人工智能, 效率工具, 导航站, toolbox100, AI写作, AI视频, AI图片, AI PPT, Dream Machine, Runway, Jasper, Fotor, Gamma, AI Tools, Artificial Intelligence, Productivity Tools">
     <link rel="canonical" href="https://www.toolbox100.com/" />
 
     <!-- Open Graph / Social Media a -->
@@ -27,18 +27,15 @@
         /* 自定义字体 */
         body {
             font-family: 'Inter', sans-serif;
-            /* 现代渐变背景 */
-            background-color: #F3F4F6; /* Fallback */
+            background-color: #F3F4F6;
             background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
 
-        /* 暗黑模式下的背景 */
         .dark body {
-             background-color: #111827; /* Fallback */
+             background-color: #111827;
              background-image: linear-gradient(135deg, #1f2937 0%, #374151 100%);
         }
         
-        /* 卡片玻璃拟态效果 */
         .tool-card {
             background: rgba(255, 255, 255, 0.3);
             -webkit-backdrop-filter: blur(10px);
@@ -47,10 +44,9 @@
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeInUp 0.5s ease-out forwards;
-            opacity: 0; /* 为动画效果，初始时隐藏 */
+            opacity: 0;
         }
         
-        /* 暗黑模式下的卡片 */
         .dark .tool-card {
             background: rgba(31, 41, 55, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -66,7 +62,6 @@
              box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
         }
 
-        /* 卡片进入动画 */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -77,21 +72,48 @@
                 transform: translateY(0);
             }
         }
+
+        /* 语言切换按钮样式 */
+        .lang-btn {
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        /* 选中状态的按钮 */
+        .lang-btn.active {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+            border-color: #4f46e5;
+        }
+        .dark .lang-btn.active {
+            background-color: #6366f1; /* indigo-500 */
+            border-color: #6366f1;
+        }
     </style>
 </head>
 <body class="text-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+    
+    <!-- 顶部容器，包含语言切换 -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <div class="flex justify-end">
+            <div class="flex space-x-2">
+                <button id="lang-zh-btn" class="lang-btn px-4 py-1.5 border border-indigo-300 dark:border-indigo-500 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500">中文</button>
+                <button id="lang-en-btn" class="lang-btn px-4 py-1.5 border border-indigo-300 dark:border-indigo-500 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-medium hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500">English</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- 主容器 -->
     <main class="flex-grow">
-        <div class="container mx-auto px-4 py-12 md:py-16">
+        <div class="container mx-auto px-4 py-8 md:py-12">
             
             <!-- 头部 -->
             <header class="text-center mb-12">
-                <h1 class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 pb-2">
-                    AI 工具神兵谱
+                <h1 id="main-title" class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 pb-2">
+                    <!-- JS will populate -->
                 </h1>
-                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                    精选20款前沿AI工具，释放你的创造力，让效率和灵感双双起飞。
+                <p id="subtitle" class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    <!-- JS will populate -->
                 </p>
             </header>
 
@@ -105,73 +127,168 @@
     
     <!-- 页脚 -->
     <footer class="text-center py-6">
-        <p class="text-gray-500 dark:text-gray-400 text-sm">© 2025 toolbox100.com. All Rights Reserved.</p>
+        <p id="footer-text" class="text-gray-500 dark:text-gray-400 text-sm"><!-- JS will populate --></p>
     </footer>
 
 
     <script>
-        // 检测并应用暗黑模式
+        // --- 数据定义 ---
+        const siteURLs = [
+            "https://lexiai.io/", "https://lumalabs.ai/dream-machine", "https://www.vozo.ai/", "https://essaygpt.io/", "https://www.fotor.com/",
+            "https://lovo.ai/", "https://klap.app/", "https://writesonic.com/", "https://speechify.com/", "https://gamma.app/",
+            "https://www.slidesai.io/", "https://www.beautiful.ai/", "https://slidespeak.co/", "https://www.tavus.io/", "https://eightify.app/",
+            "https://stockimg.ai/", "https://runwayml.com/", "https://www.jasper.ai/", "https://www.m1-project.com/", "https://plusai.com/"
+        ];
+
+        const translations = {
+            zh: {
+                pageTitle: "AI 工具神兵谱 - toolbox100.com | 精选AI效率工具导航",
+                metaDescription: "toolbox100.com 是一个精选AI工具导航站，收录了20+款强大的AI效率工具，涵盖AI写作、视频生成、图片编辑、PPT制作等领域，助您提升工作效率。",
+                headerTitle: "AI 工具神兵谱",
+                subtitle: "精选20款前沿AI工具，释放你的创造力，让效率和灵感双双起飞。",
+                buttonText: "前往探索",
+                footerText: "© 2025 toolbox100.com. 版权所有。",
+                tools: [
+                    { name: "Lexi AI", description: "一键打造爆款Meta广告，精准定向，转化率起飞！小白也能秒变营销高手。" },
+                    { name: "Dream Machine", description: "文字秒变视频，AI一键生成超写实短片，简直是创作神器！" },
+                    { name: "Vozo", description: "AI视频翻译黑科技！多语言智能配音，内容无国界。" },
+                    { name: "EssayGPT", description: "AI写作助手，完美避开查重，论文再也不用愁！" },
+                    { name: "Fotor", description: "傻瓜式AI图片编辑，普通人也能秒变设计师！" },
+                    { name: "LOVO AI", description: "百万用户的声音工厂，AI配音逼真到让人起鸡皮疙瘩！" },
+                    { name: "Klap", description: "一键搬运YouTube视频，秒变短视频创作机器！" },
+                    { name: "WriteSonic", description: "AI写作加速器，10倍提效，SEO文案秒发！" },
+                    { name: "Speechify", description: "文字瞬间变播客，内容创作从未如此轻松！" },
+                    { name: "Gamma", description: "文档秒变PPT，演示文稿从此告别枯燥！" },
+                    { name: "SlidesAI", description: "谷歌幻灯片插件，文字一键生成PPT，太智能了！" },
+                    { name: "Beautiful AI", description: "AI设计加持，几分钟搞定高端PPT！" },
+                    { name: "SlideSpeak", description: "Word文档秒变精美演示，AI让制作变简单！" },
+                    { name: "Tavus", description: "AI口型同步黑科技，一个视频变百种个性化内容！" },
+                    { name: "Eightify", description: "2小时播客秒总结，AI浓缩精华，省时又高效！" },
+                    { name: "StockImg AI", description: "秒创logo、UI设计，设计师快失业了！" },
+                    { name: "Runway", description: "AI视频生成新时代，文字秒变视频不是梦！" },
+                    { name: "Jasper AI", description: "智能写作助手，模板丰富，秒杀抄袭风险！" },
+                    { name: "M1-Project", description: "全天候AI营销助手，让推广轻松无压力！" },
+                    { name: "Plus Docs", description: "PPT制作革命，与各大办公软件无缝集成！" }
+                ]
+            },
+            en: {
+                pageTitle: "AI Tools Arsenal - toolbox100.com | Curated AI Productivity Tools",
+                metaDescription: "toolbox100.com is a curated directory of 20+ powerful AI tools for writing, video generation, image editing, presentation making, and more to boost your productivity.",
+                headerTitle: "AI Tools Arsenal",
+                subtitle: "A curated list of 20 cutting-edge AI tools to unleash your creativity and supercharge your productivity.",
+                buttonText: "Explore",
+                footerText: "© 2025 toolbox100.com. All Rights Reserved.",
+                tools: [
+                    { name: "Lexi AI", description: "Create viral Meta ads with one click. Precision targeting for soaring conversion rates!" },
+                    { name: "Dream Machine", description: "Turn text into video in seconds. This AI generates ultra-realistic short films with a single click." },
+                    { name: "Vozo", description: "The ultimate AI video translation tech! Smart multi-language dubbing makes your content borderless." },
+                    { name: "EssayGPT", description: "Your AI writing assistant that perfectly bypasses plagiarism checkers. No more worries about essays!" },
+                    { name: "Fotor", description: "User-friendly AI photo editing that turns anyone into a designer in seconds!" },
+                    { name: "LOVO AI", description: "A voice factory for millions of users. The AI voiceovers are so realistic, they'll give you goosebumps!" },
+                    { name: "Klap", description: "Repurpose YouTube videos with one click, transforming them into a short video creation machine!" },
+                    { name: "WriteSonic", description: "An AI writing accelerator that boosts your efficiency by 10x. Get SEO-optimized content in an instant!" },
+                    { name: "Speechify", description: "Instantly turn text into a podcast. Content creation has never been this easy!" },
+                    { name: "Gamma", description: "Transform documents into presentations. Say goodbye to boring slideshows forever!" },
+                    { name: "SlidesAI", description: "A Google Slides add-on that creates presentations from text with one click. It's incredibly smart!" },
+                    { name: "Beautiful AI", description: "With AI-powered design, create high-end presentations in just a few minutes!" },
+                    { name: "SlideSpeak", description: "Turn Word documents into beautiful presentations. AI makes creation simple!" },
+                    { name: "Tavus", description: "AI lip-sync magic that turns one video into hundreds of personalized messages!" },
+                    { name: "Eightify", description: "Summarize a 2-hour podcast in seconds. This AI distills the key points, saving you time and effort!" },
+                    { name: "StockImg AI", description: "Instantly create logos and UI designs. Designers might be out of a job soon!" },
+                    { name: "Runway", description: "A new era of AI video generation. Turning text into video is no longer just a dream!" },
+                    { name: "Jasper AI", description: "An intelligent writing assistant with rich templates, eliminating the risk of plagiarism." },
+                    { name: "M1-Project", description: "A 24/7 AI marketing assistant that makes promotion effortless and stress-free!" },
+                    { name: "Plus Docs", description: "A revolution in presentation making, seamlessly integrated with major office suites!" }
+                ]
+            }
+        };
+
+        // --- DOM 元素 ---
+        const zhBtn = document.getElementById('lang-zh-btn');
+        const enBtn = document.getElementById('lang-en-btn');
+        const grid = document.getElementById('tools-grid');
+        const mainTitle = document.getElementById('main-title');
+        const subtitle = document.getElementById('subtitle');
+        const footerText = document.getElementById('footer-text');
+        const htmlTag = document.documentElement;
+
+        // --- 功能函数 ---
+
+        // 渲染页面内容的函数
+        function updateContent(lang) {
+            const content = translations[lang];
+
+            htmlTag.lang = lang === 'zh' ? 'zh-CN' : 'en';
+            document.title = content.pageTitle;
+            document.querySelector('meta[name="description"]').setAttribute('content', content.metaDescription);
+            mainTitle.textContent = content.headerTitle;
+            subtitle.textContent = content.subtitle;
+            footerText.textContent = content.footerText;
+
+            // 更新按钮的激活状态
+            if (lang === 'zh') {
+                zhBtn.classList.add('active');
+                enBtn.classList.remove('active');
+            } else {
+                enBtn.classList.add('active');
+                zhBtn.classList.remove('active');
+            }
+
+            grid.innerHTML = '';
+            content.tools.forEach((site, index) => {
+                const card = document.createElement('div');
+                card.className = 'tool-card rounded-2xl p-6 flex flex-col';
+                card.style.animationDelay = `${index * 75}ms`;
+                
+                card.innerHTML = `
+                    <div class="flex-grow">
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">${site.name}</h2>
+                        <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed">${site.description}</p>
+                    </div>
+                    <div class="mt-6">
+                        <a href="${siteURLs[index]}" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center justify-center w-full font-semibold py-2.5 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-transparent border border-indigo-500 text-indigo-500 hover:bg-indigo-500 hover:text-white dark:border-indigo-400 dark:text-indigo-400 dark:hover:bg-indigo-400 dark:hover:text-white transition-colors duration-300">
+                            <span>${content.buttonText}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- 初始化和事件监听 ---
+        
+        // 确定初始语言：首先检查localStorage，然后检查浏览器语言
+        let currentLang = localStorage.getItem('language') || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+
+        // 为按钮添加事件监听器
+        zhBtn.addEventListener('click', () => {
+            if (currentLang !== 'zh') {
+                currentLang = 'zh';
+                localStorage.setItem('language', currentLang);
+                updateContent(currentLang);
+            }
+        });
+        enBtn.addEventListener('click', () => {
+            if (currentLang !== 'en') {
+                currentLang = 'en';
+                localStorage.setItem('language', currentLang);
+                updateContent(currentLang);
+            }
+        });
+
+        // 暗黑模式检测
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark')
         } else {
           document.documentElement.classList.remove('dark')
         }
-        
-        // 定义网站数据
-        const websites = [
-            { name: "Lexi AI", url: "https://lexiai.io/", description: "一键打造爆款Meta广告，精准定向，转化率起飞！小白也能秒变营销高手。" },
-            { name: "Dream Machine", url: "https://lumalabs.ai/dream-machine", description: "文字秒变视频，AI一键生成超写实短片，简直是创作神器！" },
-            { name: "Vozo", url: "https://www.vozo.ai/", description: "AI视频翻译黑科技！多语言智能配音，内容无国界。" },
-            { name: "EssayGPT", url: "https://essaygpt.io/", description: "AI写作助手，完美避开查重，论文再也不用愁！" },
-            { name: "Fotor", url: "https://www.fotor.com/", description: "傻瓜式AI图片编辑，普通人也能秒变设计师！" },
-            { name: "LOVO AI", url: "https://lovo.ai/", description: "百万用户的声音工厂，AI配音逼真到让人起鸡皮疙瘩！" },
-            { name: "Klap", url: "https://klap.app/", description: "一键搬运YouTube视频，秒变短视频创作机器！" },
-            { name: "WriteSonic", url: "https://writesonic.com/", description: "AI写作加速器，10倍提效，SEO文案秒发！" },
-            { name: "Speechify", url: "https://speechify.com/", description: "文字瞬间变播客，内容创作从未如此轻松！" },
-            { name: "Gamma", url: "https://gamma.app/", description: "文档秒变PPT，演示文稿从此告别枯燥！" },
-            { name: "SlidesAI", url: "https://www.slidesai.io/", description: "谷歌幻灯片插件，文字一键生成PPT，太智能了！" },
-            { name: "Beautiful AI", url: "https://www.beautiful.ai/", description: "AI设计加持，几分钟搞定高端PPT！" },
-            { name: "SlideSpeak", url: "https://slidespeak.co/", description: "Word文档秒变精美演示，AI让制作变简单！" },
-            { name: "Tavus", url: "https://www.tavus.io/", description: "AI口型同步黑科技，一个视频变百种个性化内容！" },
-            { name: "Eightify", url: "https://eightify.app/", description: "2小时播客秒总结，AI浓缩精华，省时又高效！" },
-            { name: "StockImg AI", url: "https://stockimg.ai/", description: "秒创logo、UI设计，设计师快失业了！" },
-            { name: "Runway", url: "https://runwayml.com/", description: "AI视频生成新时代，文字秒变视频不是梦！" },
-            { name: "Jasper AI", url: "https://www.jasper.ai/", description: "智能写作助手，模板丰富，秒杀抄袭风险！" },
-            { name: "M1-Project", url: "https://www.m1-project.com/", description: "全天候AI营销助手，让推广轻松无压力！" },
-            { name: "Plus Docs", url: "https://plusai.com/", description: "PPT制作革命，与各大办公软件无缝集成！" }
-        ];
 
-        // 获取网格容器
-        const grid = document.getElementById('tools-grid');
-
-        // 动态生成卡片并添加到页面
-        websites.forEach((site, index) => {
-            // 创建卡片容器
-            const card = document.createElement('div');
-            card.className = 'tool-card rounded-2xl p-6 flex flex-col';
-            // 设置动画延迟，实现错落加载效果
-            card.style.animationDelay = `${index * 75}ms`;
-            
-            // 卡片内容
-            card.innerHTML = `
-                <div class="flex-grow">
-                    <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">${site.name}</h2>
-                    <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed">${site.description}</p>
-                </div>
-                <div class="mt-6">
-                    <a href="${site.url}" target="_blank" rel="noopener noreferrer" 
-                       class="inline-flex items-center justify-center w-full font-semibold py-2.5 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-transparent border border-indigo-500 text-indigo-500 hover:bg-indigo-500 hover:text-white dark:border-indigo-400 dark:text-indigo-400 dark:hover:bg-indigo-400 dark:hover:text-white transition-colors duration-300">
-                        <span>前往探索</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            `;
-            
-            // 将卡片添加到网格中
-            grid.appendChild(card);
-        });
+        // 初始加载页面内容
+        updateContent(currentLang);
     </script>
 </body>
 </html>
