@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO 优化 -->
+    <title>AI 工具神兵谱 - toolbox100.com | 精选AI效率工具导航</title>
+    <meta name="description" content="toolbox100.com 是一个精选AI工具导航站，收录了20+款强大的AI效率工具，涵盖AI写作、视频生成、图片编辑、PPT制作等领域，助您提升工作效率。">
+    <meta name="keywords" content="AI工具, 人工智能, 效率工具, 导航站, toolbox100, AI写作, AI视频, AI图片, AI PPT, Dream Machine, Runway, Jasper, Fotor, Gamma">
+    <link rel="canonical" href="https://www.toolbox100.com/" />
+
+    <!-- Open Graph / Social Media a -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.toolbox100.com/">
+    <meta property="og:title" content="AI 工具神兵谱 - toolbox100.com | 精选AI效率工具导航">
+    <meta property="og:description" content="精选20+款前沿AI工具，涵盖写作、视频、设计等领域，释放你的创造力。">
+    <meta property="og:site_name" content="toolbox100.com">
+
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Inter字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 自定义字体 */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* 现代渐变背景 */
+            background-color: #F3F4F6; /* Fallback */
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        /* 暗黑模式下的背景 */
+        .dark body {
+             background-color: #111827; /* Fallback */
+             background-image: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+        
+        /* 卡片玻璃拟态效果 */
+        .tool-card {
+            background: rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0; /* 为动画效果，初始时隐藏 */
+        }
+        
+        /* 暗黑模式下的卡片 */
+        .dark .tool-card {
+            background: rgba(31, 41, 55, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+        }
+        
+        .dark .tool-card:hover {
+             box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* 卡片进入动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+
+    <!-- 主容器 -->
+    <main class="flex-grow">
+        <div class="container mx-auto px-4 py-12 md:py-16">
+            
+            <!-- 头部 -->
+            <header class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 pb-2">
+                    AI 工具神兵谱
+                </h1>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    精选20款前沿AI工具，释放你的创造力，让效率和灵感双双起飞。
+                </p>
+            </header>
+
+            <!-- 工具卡片网格布局 -->
+            <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- 卡片将通过JS动态插入 -->
+            </div>
+
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="text-center py-6">
+        <p class="text-gray-500 dark:text-gray-400 text-sm">© 2025 toolbox100.com. All Rights Reserved.</p>
+    </footer>
+
+
+    <script>
+        // 检测并应用暗黑模式
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+        
+        // 定义网站数据
+        const websites = [
+            { name: "Lexi AI", url: "https://lexiai.io/", description: "一键打造爆款Meta广告，精准定向，转化率起飞！小白也能秒变营销高手。" },
+            { name: "Dream Machine", url: "https://lumalabs.ai/dream-machine", description: "文字秒变视频，AI一键生成超写实短片，简直是创作神器！" },
+            { name: "Vozo", url: "https://www.vozo.ai/", description: "AI视频翻译黑科技！多语言智能配音，内容无国界。" },
+            { name: "EssayGPT", url: "https://essaygpt.io/", description: "AI写作助手，完美避开查重，论文再也不用愁！" },
+            { name: "Fotor", url: "https://www.fotor.com/", description: "傻瓜式AI图片编辑，普通人也能秒变设计师！" },
+            { name: "LOVO AI", url: "https://lovo.ai/", description: "百万用户的声音工厂，AI配音逼真到让人起鸡皮疙瘩！" },
+            { name: "Klap", url: "https://klap.app/", description: "一键搬运YouTube视频，秒变短视频创作机器！" },
+            { name: "WriteSonic", url: "https://writesonic.com/", description: "AI写作加速器，10倍提效，SEO文案秒发！" },
+            { name: "Speechify", url: "https://speechify.com/", description: "文字瞬间变播客，内容创作从未如此轻松！" },
+            { name: "Gamma", url: "https://gamma.app/", description: "文档秒变PPT，演示文稿从此告别枯燥！" },
+            { name: "SlidesAI", url: "https://www.slidesai.io/", description: "谷歌幻灯片插件，文字一键生成PPT，太智能了！" },
+            { name: "Beautiful AI", url: "https://www.beautiful.ai/", description: "AI设计加持，几分钟搞定高端PPT！" },
+            { name: "SlideSpeak", url: "https://slidespeak.co/", description: "Word文档秒变精美演示，AI让制作变简单！" },
+            { name: "Tavus", url: "https://www.tavus.io/", description: "AI口型同步黑科技，一个视频变百种个性化内容！" },
+            { name: "Eightify", url: "https://eightify.app/", description: "2小时播客秒总结，AI浓缩精华，省时又高效！" },
+            { name: "StockImg AI", url: "https://stockimg.ai/", description: "秒创logo、UI设计，设计师快失业了！" },
+            { name: "Runway", url: "https://runwayml.com/", description: "AI视频生成新时代，文字秒变视频不是梦！" },
+            { name: "Jasper AI", url: "https://www.jasper.ai/", description: "智能写作助手，模板丰富，秒杀抄袭风险！" },
+            { name: "M1-Project", url: "https://www.m1-project.com/", description: "全天候AI营销助手，让推广轻松无压力！" },
+            { name: "Plus Docs", url: "https://plusai.com/", description: "PPT制作革命，与各大办公软件无缝集成！" }
+        ];
+
+        // 获取网格容器
+        const grid = document.getElementById('tools-grid');
+
+        // 动态生成卡片并添加到页面
+        websites.forEach((site, index) => {
+            // 创建卡片容器
+            const card = document.createElement('div');
+            card.className = 'tool-card rounded-2xl p-6 flex flex-col';
+            // 设置动画延迟，实现错落加载效果
+            card.style.animationDelay = `${index * 75}ms`;
+            
+            // 卡片内容
+            card.innerHTML = `
+                <div class="flex-grow">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">${site.name}</h2>
+                    <p class="text-gray-700 dark:text-gray-300 text-base leading-relaxed">${site.description}</p>
+                </div>
+                <div class="mt-6">
+                    <a href="${site.url}" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center justify-center w-full font-semibold py-2.5 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-transparent border border-indigo-500 text-indigo-500 hover:bg-indigo-500 hover:text-white dark:border-indigo-400 dark:text-indigo-400 dark:hover:bg-indigo-400 dark:hover:text-white transition-colors duration-300">
+                        <span>前往探索</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            `;
+            
+            // 将卡片添加到网格中
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
